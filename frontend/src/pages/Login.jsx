@@ -1,4 +1,4 @@
-// File: frontend/src/pages/Login.jsx
+// File: frontend/src/pages/login.jsx
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
@@ -14,7 +14,7 @@ import {
   useToast,
 } from '@chakra-ui/react';
 
-const Login = () => {
+const Login = () => {  // Renamed to Login
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -27,8 +27,7 @@ const Login = () => {
     setLoading(true);
 
     try {
-      // ✅ Relative URL to support both local dev and Netlify redirects
-      const response = await fetch('/api/auth/login', {
+      const response = await fetch('http://localhost:3000/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
@@ -70,7 +69,7 @@ const Login = () => {
   };
 
   return (
-    <Box maxW="400px" mx="auto" mt="50px" p="6" boxShadow="lg" borderRadius="md" bg="white">
+    <Box maxW="400px" mx="auto" mt="50px" p="6" boxShadow="lg" borderRadius="md">
       <Heading mb="4">Login</Heading>
       <form onSubmit={handleLogin}>
         <VStack spacing="4">
